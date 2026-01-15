@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Universal vehicle movement from left → right */
+@keyframes moveLinear {
+  0% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(120vw);
+  }
+}
+
+/* Optional Tailwind-friendly helper class if needed */
+.animate-move {
+  animation: moveLinear 15s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
