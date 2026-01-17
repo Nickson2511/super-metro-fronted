@@ -45,12 +45,12 @@ export default function Header({
 
             {/* ================= Navigation ================= */}
             <nav className="sticky top-0 z-50 bg-white border-t border-gray-300 shadow-md">
-                <div className="max-w-8xl mx-auto flex items-center justify-between px-4 py-6">
+                <div className="max-w-8xl mx-auto flex flex-wrap md:flex-nowrap items-center justify-between px-4 py-4 md:py-6">
 
                     {/* ================= Logo + Text ================= */}
-                    <div className="flex items-center gap-6">
-                        {/* Bottle-cap logo (2× bigger) */}
-                        <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56">
+                    <div className="flex flex-1 flex-col xs:flex-col sm:flex-col md:flex-row items-center md:items-center justify-center md:justify-start gap-3 md:gap-4">
+                        {/* Bottle-cap logo */}
+                        <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 flex-shrink-0">
                             <svg
                                 viewBox="0 0 200 200"
                                 className="w-full h-full"
@@ -101,24 +101,24 @@ export default function Header({
                             </svg>
                         </div>
 
-                        {/* Permanent text */}
-                        <div className="hidden sm:block text-3xl md:text-4xl font-extrabold text-red-600">
+                        {/* Text always visible, shrinks on smaller screens */}
+                        <div className="text-red-600 font-extrabold text-center text-lg sm:text-xl md:text-3xl break-words">
                             Super Metro Classic
                         </div>
                     </div>
 
                     {/* ================= Desktop Menu ================= */}
-                    <ul className="hidden md:flex items-center gap-8">
+                    <ul className="hidden md:flex items-center gap-6 md:gap-8">
                         {navItems.map((item) => (
                             <li
                                 key={item}
-                                className="text-gray-800 text-lg font-medium hover:text-red-600 cursor-pointer"
+                                className="text-gray-800 text-base md:text-lg font-medium hover:text-red-600 cursor-pointer"
                             >
                                 {item}
                             </li>
                         ))}
-                        <FaFacebook className="w-7 h-7 text-gray-800 hover:text-blue-600 cursor-pointer" />
-                        <FaTwitter className="w-7 h-7 text-gray-800 hover:text-blue-400 cursor-pointer" />
+                        <FaFacebook className="w-6 h-6 text-gray-800 hover:text-blue-600 cursor-pointer" />
+                        <FaTwitter className="w-6 h-6 text-gray-800 hover:text-blue-400 cursor-pointer" />
                     </ul>
 
                     {/* ================= Mobile Button ================= */}
@@ -127,26 +127,26 @@ export default function Header({
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         aria-label="Toggle menu"
                     >
-                        {mobileMenuOpen ? <X size={30} /> : <Menu size={30} />}
+                        {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
                     </button>
                 </div>
 
                 {/* ================= Mobile Menu ================= */}
                 {mobileMenuOpen && (
                     <div className="md:hidden bg-white border-t border-gray-200 shadow-lg">
-                        <ul className="flex flex-col items-center gap-5 py-6">
+                        <ul className="flex flex-col items-center gap-4 py-4">
                             {navItems.map((item) => (
                                 <li
                                     key={item}
                                     onClick={() => setMobileMenuOpen(false)}
-                                    className="text-lg font-medium hover:text-red-600 cursor-pointer"
+                                    className="text-base font-medium hover:text-red-600 cursor-pointer"
                                 >
                                     {item}
                                 </li>
                             ))}
-                            <div className="flex gap-6 pt-4">
-                                <FaFacebook className="w-6 h-6 text-gray-800 hover:text-blue-600 cursor-pointer" />
-                                <FaTwitter className="w-6 h-6 text-gray-800 hover:text-blue-400 cursor-pointer" />
+                            <div className="flex gap-4 pt-3">
+                                <FaFacebook className="w-5 h-5 text-gray-800 hover:text-blue-600 cursor-pointer" />
+                                <FaTwitter className="w-5 h-5 text-gray-800 hover:text-blue-400 cursor-pointer" />
                             </div>
                         </ul>
                     </div>
