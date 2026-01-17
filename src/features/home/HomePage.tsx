@@ -11,20 +11,17 @@ import TopDestinations from "../../components/TopDestinations";
 export default function HomePage() {
     return (
         <div className="min-h-screen bg-red-50">
-            {/* Header */}
             <Header />
 
-            {/* Spacer + page content */}
-            <div className="pt-[240px] md:pt-[260px]">
-                <HeroSection />
-                <RouteSection />
-                <TopDestinations />
-                <DiscoverDestinations />
-                <AwardsSection />
-                <HappyTravelers />
-                <CrossLine />
-                <Footer />
-            </div>
+            {/* No spacer, hero attaches directly */}
+            <HeroSection />
+            <RouteSection />
+            <TopDestinations />
+            <DiscoverDestinations />
+            <AwardsSection />
+            <HappyTravelers />
+            <CrossLine />
+            <Footer />
         </div>
     );
 }
