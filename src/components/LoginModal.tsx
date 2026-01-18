@@ -1,5 +1,5 @@
 import { X, User, Lock } from "lucide-react";
-import React from "react";
+import type { ReactElement } from "react";
 
 interface LoginModalProps {
     open: boolean;
@@ -10,61 +10,55 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
     if (!open) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-3 sm:px-4">
             {/* Modal Card */}
-            <div className="
-        bg-white
-        w-full
-        max-w-2xl
-        min-h-[620px]
-        max-h-[90vh]
-        overflow-y-auto
-        rounded-3xl
-        p-10
-        relative
-        shadow-2xl
-      ">
-
+            <div
+                className="
+          bg-white
+          w-full
+          max-w-[95%]
+          sm:max-w-lg
+          md:max-w-xl
+          lg:max-w-2xl
+          max-h-[90vh]
+          overflow-y-auto
+          rounded-2xl sm:rounded-3xl
+          p-5 sm:p-7 md:p-8 lg:p-10
+          relative
+          shadow-2xl
+        "
+            >
                 {/* Close Button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-6 right-6 text-gray-400 hover:text-red-600 transition"
+                    className="absolute top-4 right-4 sm:top-5 sm:right-5 text-gray-400 hover:text-red-600 transition"
                     aria-label="Close login modal"
                 >
-                    <X size={28} />
+                    <X size={22} />
                 </button>
 
                 {/* Title */}
-                <h2 className="text-4xl font-extrabold text-center text-red-600 mb-3">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center text-red-600 mb-2">
                     Login
                 </h2>
 
-                <p className="text-center text-gray-500 text-lg mb-10">
+                <p className="text-center text-gray-500 text-sm sm:text-base md:text-lg mb-6 sm:mb-8">
                     Hello! Welcome to your account
                 </p>
 
                 {/* Form */}
-                <form className="space-y-8">
-
+                <form className="space-y-4 sm:space-y-5 md:space-y-6">
                     {/* Email */}
-                    <InputWithIcon
-                        icon={<User size={24} />}
-                        placeholder="Type your email"
-                        type="email"
-                    />
+                    <InputWithIcon icon={<User size={20} />} placeholder="Type your email" type="email" />
 
                     {/* Password */}
-                    <InputWithIcon
-                        icon={<Lock size={24} />}
-                        placeholder="Type your password"
-                        type="password"
-                    />
+                    <InputWithIcon icon={<Lock size={20} />} placeholder="Type your password" type="password" />
 
                     {/* Forgot Password */}
                     <div className="text-right">
                         <a
                             href="/forgot-password"
-                            className="text-base text-red-600 hover:underline hover:text-red-700 transition"
+                            className="text-xs sm:text-sm md:text-base text-red-600 hover:underline hover:text-red-700 transition"
                         >
                             Forgot password?
                         </a>
@@ -75,11 +69,12 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
                         type="submit"
                         className="
               w-full
+              mt-4 sm:mt-5
               bg-red-600
               text-white
-              py-5
+              py-3 sm:py-4
               rounded-full
-              text-xl
+              text-base sm:text-lg md:text-xl
               font-semibold
               hover:bg-red-700
               active:scale-[0.98]
@@ -95,39 +90,41 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
 }
 
 /* --------------------------------------------------
-   Reusable Input With Icon
+    Reusable Input With Icon (Responsive)
 -------------------------------------------------- */
 
 interface InputWithIconProps {
-    icon: React.ReactNode;
+    icon: ReactElement<{ size?: number }>;
     placeholder: string;
     type?: string;
 }
 
-function InputWithIcon({
-    icon,
-    placeholder,
-    type = "text",
-}: InputWithIconProps) {
+function InputWithIcon({ icon, placeholder, type = "text" }: InputWithIconProps) {
     return (
-        <div className="
-      flex
-      items-center
-      gap-5
-      border
-      border-gray-300
-      rounded-full
-      px-8
-      py-5
-      focus-within:ring-2
-      focus-within:ring-red-500
-      transition
-    ">
-            <span className="text-gray-400">{icon}</span>
+        <div
+            className="
+        flex
+        items-center
+        gap-3 sm:gap-4
+        border
+        border-gray-300
+        rounded-full
+        px-4 sm:px-5 md:px-6
+        py-2.5 sm:py-3 md:py-4
+        focus-within:ring-2
+        focus-within:ring-red-500
+        transition
+      "
+        >
+            {/* Wrap icon in span for styling */}
+            <span className="text-gray-400 flex-shrink-0">
+                {icon}
+            </span>
+
             <input
                 type={type}
                 placeholder={placeholder}
-                className="w-full outline-none text-lg placeholder-gray-400"
+                className="w-full outline-none text-sm sm:text-base md:text-lg placeholder-gray-400"
             />
         </div>
     );
