@@ -1,5 +1,7 @@
 import { Bell, Settings, Menu, X } from "lucide-react";
 import { FaFacebook, FaTwitter } from "react-icons/fa";
+import SignupModal from "./SignupModal";
+import LoginModal from "./LoginModal";
 import React, { useState } from "react";
 
 interface HeaderProps {
@@ -12,6 +14,10 @@ export default function Header({
     children,
 }: HeaderProps) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [signupOpen, setSignupOpen] = useState(false);
+    const [loginOpen, setLoginOpen] = useState(false);
+
+
 
     const navItems = ["Home", "Bus Hire", "Parcels", "Contact Us", "About Us"];
 
@@ -33,12 +39,20 @@ export default function Header({
                 {/* ================= Auth Buttons ================= */}
                 <div className="bg-red-600 w-full">
                     <div className="max-w-8xl mx-auto flex justify-center md:justify-end gap-4 p-4">
-                        <button className="bg-white text-red-600 font-semibold px-10 py-3 rounded-full hover:bg-gray-100 transition">
+                        <button
+                            onClick={() => setSignupOpen(true)}
+                            className="bg-white text-red-600 font-semibold px-10 py-3 rounded-full hover:bg-gray-100 transition"
+                        >
                             Signup
                         </button>
-                        <button className="bg-white text-red-600 font-semibold px-10 py-3 rounded-full hover:bg-gray-100 transition">
+
+                        <button
+                            onClick={() => setLoginOpen(true)}
+                            className="bg-white text-red-600 font-semibold px-10 py-3 rounded-full hover:bg-gray-100 transition"
+                        >
                             Login
                         </button>
+
                     </div>
                 </div>
             </header>
@@ -152,6 +166,18 @@ export default function Header({
                     </div>
                 )}
             </nav>
+            <SignupModal
+                open={signupOpen}
+                onClose={() => setSignupOpen(false)}
+            />
+
+            <LoginModal
+                open={loginOpen}
+                onClose={() => setLoginOpen(false)}
+            />
+
+
         </>
+
     );
 }
